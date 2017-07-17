@@ -11,14 +11,14 @@ branches:
   only:
     - master
 
-env:
-  - DATABASE_URL=postgres://shippable:@127.0.0.1:5432/flatfox_website_test
-  - CACHE_URL=hiredis://127.0.0.1:6379/1
-  - PERSISTENT_CACHE_URL=hiredis://127.0.0.1:6379/2
-  - DJANGO_SETTINGS_MODULE=flatfox_website.settings.testing
-  - SECRET_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-  - SENDGRID_API_KEY=xxxxxx
-  - SENDGRID_INBOUND_PASSWORD=xxxxxxx
+# env:
+#   - DATABASE_URL=postgres://shippable:@127.0.0.1:5432/flatfox_website_test
+#   - CACHE_URL=hiredis://127.0.0.1:6379/1
+#   - PERSISTENT_CACHE_URL=hiredis://127.0.0.1:6379/2
+#   - DJANGO_SETTINGS_MODULE=flatfox_website.settings.testing
+#   - SECRET_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+#   - SENDGRID_API_KEY=xxxxxx
+#   - SENDGRID_INBOUND_PASSWORD=xxxxxxx
 
 
 build:
