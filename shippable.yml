@@ -1,0 +1,49 @@
+language: python
+
+python:
+  - 3.4
+
+services:
+  - postgres
+  - redis
+
+env:
+  - DATABASE_URL=postgres://shippable:@127.0.0.1:5432/flatfox_website_test
+  - CACHE_URL=hiredis://127.0.0.1:6379/1
+  - PERSISTENT_CACHE_URL=hiredis://127.0.0.1:6379/2
+  - DJANGO_SETTINGS_MODULE=flatfox_website.settings.testing
+  - SECRET_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  - SENDGRID_API_KEY=xxxxxx
+  - SENDGRID_INBOUND_PASSWORD=xxxxxxx
+
+
+build:
+  cache: true
+  cache_dir_list:
+    - $SHIPPABLE_BUILD_DIR/yarn.lock
+    - $SHIPPABLE_BUILD_DIR/node_modules
+    - $SHIPPABLE_BUILD_DIR/venc
+    - $SHIPPABLE_BUILD_DIR/bower_components
+
+  ci:
+    # Install dependencies
+    - apt-get install -y nodejs yarn
+
+    - python -m venv venv
+    - . venv/bin/activate
+    - pip install --upgrade pip
+    - pip install -r REQUIREMENTS_SERVER
+    - pip install tblib
+
+    - ./node_modules/bower/bin/bower install
+
+    - ./node_modules/gulp/bin/gulp.js build
+    - ./node_modules/gulp/bin/gulp.js check-migrations
+    
+    # Setup postgres
+    - psql -c 'create role shippable with superuser;' -U postgres
+    - psql -c 'create database flatfox_website_test;' -U postgres
+
+    # Run tests
+    - ./node_modules/gulp/bin/gulp.js test-server
+
