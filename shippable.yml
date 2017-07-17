@@ -34,7 +34,7 @@ build:
     # Install dependencies
     - apt-get install -y nodejs yarn
 
-    - python -m venv venv
+    - python3 -m venv venv
     - . venv/bin/activate
     - pip install --upgrade pip
     - pip install -r REQUIREMENTS_SERVER
