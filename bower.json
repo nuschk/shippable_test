@@ -1,0 +1,22 @@
+{
+  "name": "flatfox-website",
+  "version": "0.1.1",
+  "homepage": "https://github.com/flatfox-ag/flatfox-website",
+  "description": "Flatfox's website",
+  "main": "dist/build/main.css",
+  "license": "None",
+  "private": true,
+  "directory": "bower_components",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "foundation": "5.5.2",
+    "in-viewport": "~0.4.2",
+    "animate.css": "~3.2.6",
+    "wow.js": "~1.1.2",
+    "gridforms": "1.0.10"
+  }
+}
