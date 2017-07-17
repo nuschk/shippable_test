@@ -25,6 +25,7 @@ env:
 build:
   cache: true
   cache_dir_list:
+    # - /root/venv/
     - $SHIPPABLE_BUILD_DIR/yarn.lock
     - $SHIPPABLE_BUILD_DIR/node_modules
     - $SHIPPABLE_BUILD_DIR/venc
@@ -42,7 +43,7 @@ build:
     - pip install -r REQUIREMENTS
     - pip install tblib
 
-    - bower install
+    - bower --allow-root install
 
     # - ./node_modules/gulp/bin/gulp.js build
     # - ./node_modules/gulp/bin/gulp.js check-migrations
